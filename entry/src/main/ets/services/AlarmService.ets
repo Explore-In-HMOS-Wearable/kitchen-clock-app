@@ -8,7 +8,8 @@ export class AlarmService {
   private static instance: AlarmService;
   private intervalId: number | null = null;
 
-  private constructor() {}
+  private constructor() {
+  }
 
   public static getInstance(): AlarmService {
     if (!AlarmService.instance) {
@@ -18,19 +19,23 @@ export class AlarmService {
   }
 
   public startWatcher() {
-    if (this.intervalId !== null) return;
-    console.info("AlarmService started");
+    if (this.intervalId !== null) {
+      return;
+    }
+    console.info('AlarmService started');
 
     this.intervalId = setInterval(() => {
       let list = AppStorage.get('alarmList') as ReminderStorageType[] | undefined;
-      if (!list) return;
+      if (!list) {
+        return;
+      }
 
       let now = Date.now();
       let updatedList: ReminderStorageType[] = [];
 
       list.forEach(alarm => {
         if (alarm.endTime <= now) {
-          console.error("Alarm time reached: " + alarm.reminderId);
+          console.error(`Alarm time reached: ${alarm.reminderId}`);
 
           let publishCallback = (err: BusinessError): void => {
             if (err) {
@@ -45,9 +50,9 @@ export class AlarmService {
             content: {
               notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
               normal: {
-                title: "Alarm Finished!",
-                text: "Your cooking timer is up!",
-                additionalText: "test_additionalText"
+                title: 'Alarm Finished!',
+                text: 'Your cooking timer is up!',
+                additionalText: 'test_additionalText'
               }
             }
           };
@@ -81,7 +86,7 @@ export class AlarmService {
     if (this.intervalId !== null) {
       clearInterval(this.intervalId);
       this.intervalId = null;
-      console.info("AlarmService stopped");
+      console.info('AlarmService stopped');
     }
   }
 }

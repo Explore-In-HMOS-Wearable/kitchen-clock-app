@@ -95,7 +95,6 @@ struct CreatePage {
       ArcListItem() {
         Button('💾 Save Reminder')
           .onClick(() => {
-            console.info('Save Reminder button clicked');
             this.createReminder();
           })
           .width('80%')
@@ -144,9 +143,7 @@ struct CreatePage {
       notificationId: this.lastNotificationId
     };
 
-    console.error('tag id : : '+this.lastNotificationId)
-
-    let endTime = Date.now() + timeInSeconds*1000
+    let endTime = Date.now() + timeInSeconds * 1000
     let alarm : ReminderStorageType = new ReminderStorageType(this.lastNotificationId,endTime)
 
     let list : ReminderStorageType[] | undefined = AppStorage.get('alarmList')
@@ -154,11 +151,6 @@ struct CreatePage {
     AppStorage.setOrCreate('alarmList', list);
 
     this.list = AppStorage.get('alarmList')
-    if(this.list)
-    {
-      console.error('tag now',Date.now().toString())
-      console.error('tag list',this.list[0].endTime.toString())
-    }
     console.info(`Publishing reminder with ID: ${this.notificationId}`);
 
     reminderAgentManager.publishReminder(timerReminder).then((id: number) => {

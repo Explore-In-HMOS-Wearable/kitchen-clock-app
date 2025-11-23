@@ -26,16 +26,15 @@ struct ListPage {
   @State reminderTime: string = '';
   @State showInputForm: boolean = false;
   @State notificationId: number = 1000;
-  @State reminderList :  reminderAgentManager.ReminderRequest[] = []
+  @State reminderList : reminderAgentManager.ReminderRequest[] = []
   homeVm : HomeViewModel = new HomeViewModel()
 
   aboutToAppear(): void {
     this.listReminders()
-    console.error('tag list reminders')
   }
 
   build() {
-    if(this.reminderList.length > 0) {
+    if (this.reminderList.length > 0) {
       ArcList({
         initialIndex: 0, header: this.header
       }) {
@@ -78,10 +77,8 @@ struct ListPage {
       .padding({top:8, bottom: 8})
       .height('100%')
       .width('100%')
-    }
-
-    else {
-      Column(){
+    } else {
+      Column() {
         Text('No Active Reminder')
           .fontSize(22)
           .fontColor('#ffeceaea')

@@ -53,10 +53,9 @@ struct DetailsPage {
       let reminder = list?.find(r => r.reminderId === this.notificationId);
       if (reminder) {
         this.remainingMs = Math.max(0, Math.floor((reminder.endTime - Date.now())));
-        this.remainingSn = Math.max(0, Math.floor((this.remainingMs/1000)));
+        this.remainingSn = Math.max(0, Math.floor((this.remainingMs / 1000)));
         this.total_time = this.remainingSn
         this.reminderEndTime = reminder.endTime
-        console.error("tag start remaining", this.remainingSn);
       }
     }
   }
@@ -83,11 +82,8 @@ struct DetailsPage {
         .fontSize(40)
         .onTimer((utc: number, elapsedTime: number) => {
 
-          console.error('tag elapsed',elapsedTime)
-          let time = Math.max(0, Math.floor((this.reminderEndTime - Date.now())/1000));
-          console.error('tag time : '+time)
+          let time = Math.max(0, Math.floor((this.reminderEndTime - Date.now()) / 1000));
           if (time <= 0) {
-            console.error("tag timeover");
             this.textTimerController.pause();
             this.makeVibration()
             MediaController.getInstance().startByIndex(0);
@@ -110,8 +106,7 @@ struct DetailsPage {
     .justifyContent(FlexAlign.Center)
   }
 
-  makeVibration()
-  {
+  makeVibration() {
     try {
       vibrator.startVibration({
         type: 'time',
