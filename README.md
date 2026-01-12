@@ -21,10 +21,10 @@ When the timer ends, the app notifies the user with **sound alerts**, **vibratio
 - Get notified with sound, vibration, and system notifications when time is up.
 - Track remaining time with a countdown timer indicator.
 
-
 # Technology
 
 ## Stack
+
 **Languages**: ArkTS
 
 **Frameworks**: HarmonyOS SDK 5.1.0(18)
@@ -38,7 +38,6 @@ When the timer ends, the app notifies the user with **sound alerts**, **vibratio
 - `ohos.permission.KEEP_BACKGROUND_RUNNING`
 - `ohos.permission.PUBLISH_AGENT_REMINDER`
 - `ohos.permission.VIBRATE` 
-
 
 # Directory Structure
 
@@ -81,7 +80,6 @@ entry/src/main/ets/
 
 ## Supported Device
 - Huawei Watch 5
-
 
 # License
 

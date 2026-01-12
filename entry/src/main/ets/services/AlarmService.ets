@@ -60,7 +60,7 @@ export class AlarmService {
 
           vibrator.startVibration({
             type: 'time',
-            duration: 2000,
+            duration: 2000
           }, {
             id: 0,
             usage: 'alarm'

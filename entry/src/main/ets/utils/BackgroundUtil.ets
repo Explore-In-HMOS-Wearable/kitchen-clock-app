@@ -20,7 +20,7 @@ export class BackgroundUtil {
           abilityName: context.abilityInfo.name
         }
       ],
-      operationType: wantAgent.OperationType.START_ABILITY,
+      actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
@@ -29,7 +29,7 @@ export class BackgroundUtil {
       try {
         backgroundTaskManager.startBackgroundRunning(context,
           backgroundTaskManager.BackgroundMode.AUDIO_PLAYBACK, wantAgentObj).then(() => {
-          hilog.info(audioDomain, audioPrefix, TAG + ' this mediaController: startBackgroundRunning succeeded');
+          hilog.info(audioDomain, audioPrefix, TAG + ` this mediaController : startBackgroundRunning succeeded`);
         }).catch((error: BusinessError) => {
           hilog.error(audioDomain, audioPrefix, TAG + ` this mediaController: startBackgroundRunning failed Cause: code ${error.code}, message: ${error.message}`);
         });
@@ -43,7 +43,7 @@ export class BackgroundUtil {
   public static stopContinuousTask(context: common.UIAbilityContext): void {
     try {
       backgroundTaskManager.stopBackgroundRunning(context).then(() => {
-        hilog.info(audioDomain, audioPrefix, TAG + 'this audioRenderer: stopBackgroundRunning succeeded');
+        hilog.info(audioDomain, audioPrefix, TAG + `this audioRenderer: stopBackgroundRunning succeeded`);
       }).catch((error: BusinessError) => {
         hilog.error(audioDomain, audioPrefix, TAG + `this audioRenderer: stopBackgroundRunning failed Cause: code ${error.code}`);
       });

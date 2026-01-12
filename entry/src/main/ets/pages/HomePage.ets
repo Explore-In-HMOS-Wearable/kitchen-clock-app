@@ -1,15 +1,7 @@
 import { HomeViewModel } from '../viewmodel/HomeViewModel';
 
-@Entry
 @Component
 struct HomePage {
-  private reminderId: number = -1;
-  @State reminderStatus: string = 'Ready';
-  @State reminderTitle: string = '';
-  @State reminderContent: string = '';
-  @State reminderTime: string = '';
-  @State showInputForm: boolean = false;
-  @State notificationId: number = 1000;
   homeVm : HomeViewModel = new HomeViewModel()
 
   build() {

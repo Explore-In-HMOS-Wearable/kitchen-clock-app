@@ -14,18 +14,11 @@ function buildText() {
   .margin(6)
 }
 
-@Entry
 @Component
 struct ListPage {
   context: UIContext = this.getUIContext()
   header: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(buildText));
-  private reminderId: number = -1;
-  @State reminderStatus: string = 'Ready';
-  @State reminderTitle: string = '';
-  @State reminderContent: string = '';
-  @State reminderTime: string = '';
-  @State showInputForm: boolean = false;
-  @State notificationId: number = 1000;
+  reminderStatus: string = 'Ready';
   @State reminderList : reminderAgentManager.ReminderRequest[] = []
   homeVm : HomeViewModel = new HomeViewModel()
 
@@ -38,7 +31,7 @@ struct ListPage {
       ArcList({
         initialIndex: 0, header: this.header
       }) {
-        ForEach(this.reminderList, (item: reminderAgentManager.ReminderRequest, index) => {
+        ForEach(this.reminderList, (item: reminderAgentManager.ReminderRequest, index: number) => {
           ArcListItem() {
             Row({space: 10}) {
               Text(item.title)
@@ -50,7 +43,7 @@ struct ListPage {
               left: 26,
               bottom: 12,
               top: 12,
-              right: 26,
+              right: 26
             })
             .backgroundColor('#7a8bfc31')
             .width('100%')
@@ -69,7 +62,7 @@ struct ListPage {
           })
           .width('90%')
           .margin({ bottom: 10 })
-        }, (item: string) => item);
+        }, (item: string, index: number) => item);
       }
       .backgroundColor(Color.Black)
       .scrollBar(BarState.Off)

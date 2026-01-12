@@ -6,22 +6,17 @@ import { vibrator } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { MediaController } from '../utils/MediaController';
 
-@Entry
 @Component
 struct DetailsPage {
   @State reminderTitle: string = '';
-  @State reminderContent: string = '';
-  @State reminderTime: string | undefined = '';
-  @State notificationId: number | undefined = 1000;
-  @State currCount : number = 0;
-  @State total_time : number = 0;
+  notificationId: number | undefined = 1000;
+  totalTime : number = 0;
   textTimerController: TextTimerController = new TextTimerController();
-  @State format: string = 'mm:ss';
+  format: string = 'mm:ss';
   homeVm : HomeViewModel = new HomeViewModel();
   navDesInfo: uiObserver.NavDestinationInfo | undefined;
   @State remainingMs: number = 0;
-  @State remainingSn: number = 0;
-  @State test: number = 100;
+  remainingSn: number = 0;
   @State reminderEndTime: number = 0;
 
   aboutToDisappear(): void {
@@ -45,8 +40,6 @@ struct DetailsPage {
       let item = JSON.parse(this.navDesInfo?.param as string) as reminderAgentManager.ReminderRequest
 
       this.reminderTitle = item.title || '';
-      this.reminderContent = item.content || '';
-      this.reminderTime = item.snoozeTimes?.toString();
       this.notificationId = item.notificationId;
 
       let list : ReminderStorageType[] | undefined = AppStorage.get('alarmList');
@@ -54,7 +47,7 @@ struct DetailsPage {
       if (reminder) {
         this.remainingMs = Math.max(0, Math.floor((reminder.endTime - Date.now())));
         this.remainingSn = Math.max(0, Math.floor((this.remainingMs / 1000)));
-        this.total_time = this.remainingSn
+        this.totalTime = this.remainingSn
         this.reminderEndTime = reminder.endTime
       }
     }
@@ -110,7 +103,7 @@ struct DetailsPage {
     try {
       vibrator.startVibration({
         type: 'time',
-        duration: 2000,
+        duration: 2000
       }, {
         id: 0,
         usage: 'alarm'

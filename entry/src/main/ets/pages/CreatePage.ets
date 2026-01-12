@@ -15,7 +15,6 @@ function buildText() {
   .margin(6)
 }
 
-@Entry
 @Component
 struct CreatePage {
 
@@ -26,7 +25,6 @@ struct CreatePage {
   @State reminderContent: string = '';
   @State reminderTime: string = '';
   @State showInputForm: boolean = false;
-  @State notificationId: number | undefined = 1000;
   @StorageLink('alarmList') list: ReminderStorageType[] | undefined = [];
   @State lastNotificationId : number = 1000
   header: ComponentContent<Object> = new ComponentContent(this.context, wrapBuilder(buildText));
@@ -151,7 +149,6 @@ struct CreatePage {
     AppStorage.setOrCreate('alarmList', list);
 
     this.list = AppStorage.get('alarmList')
-    console.info(`Publishing reminder with ID: ${this.notificationId}`);
 
     reminderAgentManager.publishReminder(timerReminder).then((id: number) => {
       console.info(`Reminder published successfully with request ID: ${id}`);
